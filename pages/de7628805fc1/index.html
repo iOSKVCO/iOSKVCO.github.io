@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Objective-C Runtime 基本使用 | iOS丶OC</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content=" ">
+    <meta name="keywords" content="vue,vuejs,vuepress,vuepress-theme-reco">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.ab38579b.css" as="style"><link rel="preload" href="/assets/js/app.66cb26ac.js" as="script"><link rel="preload" href="/assets/js/2.3ee17fbc.js" as="script"><link rel="preload" href="/assets/js/12.c6385964.js" as="script"><link rel="preload" href="/assets/js/4.2b6c6ac4.js" as="script"><link rel="prefetch" href="/assets/js/10.50cc2eb2.js"><link rel="prefetch" href="/assets/js/11.4a36dec6.js"><link rel="prefetch" href="/assets/js/13.cba4db62.js"><link rel="prefetch" href="/assets/js/14.bf600652.js"><link rel="prefetch" href="/assets/js/15.d48030a1.js"><link rel="prefetch" href="/assets/js/16.f323f29d.js"><link rel="prefetch" href="/assets/js/17.a2fcabbc.js"><link rel="prefetch" href="/assets/js/18.afa3a67f.js"><link rel="prefetch" href="/assets/js/19.83ec7520.js"><link rel="prefetch" href="/assets/js/20.cb19d5ec.js"><link rel="prefetch" href="/assets/js/21.5931ad25.js"><link rel="prefetch" href="/assets/js/22.e959dede.js"><link rel="prefetch" href="/assets/js/23.45fba950.js"><link rel="prefetch" href="/assets/js/24.2dcf5b47.js"><link rel="prefetch" href="/assets/js/25.c339f38f.js"><link rel="prefetch" href="/assets/js/26.dc58852a.js"><link rel="prefetch" href="/assets/js/27.a16c58a2.js"><link rel="prefetch" href="/assets/js/28.b0624d05.js"><link rel="prefetch" href="/assets/js/29.9bd6e7fa.js"><link rel="prefetch" href="/assets/js/3.14afbf75.js"><link rel="prefetch" href="/assets/js/30.029e616c.js"><link rel="prefetch" href="/assets/js/31.74f3f9e4.js"><link rel="prefetch" href="/assets/js/32.5b30278f.js"><link rel="prefetch" href="/assets/js/33.0ca1605d.js"><link rel="prefetch" href="/assets/js/34.3eabd08c.js"><link rel="prefetch" href="/assets/js/35.08624ea8.js"><link rel="prefetch" href="/assets/js/36.72764ec5.js"><link rel="prefetch" href="/assets/js/37.1237d230.js"><link rel="prefetch" href="/assets/js/38.87c9a3e3.js"><link rel="prefetch" href="/assets/js/39.1679ca8e.js"><link rel="prefetch" href="/assets/js/40.c452b718.js"><link rel="prefetch" href="/assets/js/41.45c356a3.js"><link rel="prefetch" href="/assets/js/42.ad6e189d.js"><link rel="prefetch" href="/assets/js/43.b44c29a9.js"><link rel="prefetch" href="/assets/js/44.dda5f503.js"><link rel="prefetch" href="/assets/js/45.2ddb0934.js"><link rel="prefetch" href="/assets/js/46.b3e1a725.js"><link rel="prefetch" href="/assets/js/47.ed024c17.js"><link rel="prefetch" href="/assets/js/48.eddb0df9.js"><link rel="prefetch" href="/assets/js/49.b29758a7.js"><link rel="prefetch" href="/assets/js/5.eb6b8e90.js"><link rel="prefetch" href="/assets/js/50.871545e3.js"><link rel="prefetch" href="/assets/js/51.d75c458f.js"><link rel="prefetch" href="/assets/js/52.843a7549.js"><link rel="prefetch" href="/assets/js/53.76e3bfdd.js"><link rel="prefetch" href="/assets/js/54.0b1ed9d8.js"><link rel="prefetch" href="/assets/js/55.3edd6e65.js"><link rel="prefetch" href="/assets/js/56.78b762fc.js"><link rel="prefetch" href="/assets/js/57.cee4a7ba.js"><link rel="prefetch" href="/assets/js/58.13bd6728.js"><link rel="prefetch" href="/assets/js/59.52a549bb.js"><link rel="prefetch" href="/assets/js/6.2128e8d0.js"><link rel="prefetch" href="/assets/js/60.6f537c17.js"><link rel="prefetch" href="/assets/js/61.0931f624.js"><link rel="prefetch" href="/assets/js/62.1b3bbe69.js"><link rel="prefetch" href="/assets/js/63.96e273aa.js"><link rel="prefetch" href="/assets/js/64.c390262b.js"><link rel="prefetch" href="/assets/js/65.9a4ef049.js"><link rel="prefetch" href="/assets/js/66.0e80b69b.js"><link rel="prefetch" href="/assets/js/7.572380ba.js"><link rel="prefetch" href="/assets/js/8.b14803c0.js"><link rel="prefetch" href="/assets/js/9.d19c1630.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ab38579b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container have-rightmenu" data-v-f848d4e8><div class="global-loading-wrapper" data-v-137da995 data-v-f848d4e8 data-v-f848d4e8><div class="loader-main" data-v-137da995><img src="/assets/img/loading.18d75e19.gif" alt="loading" data-v-137da995></div></div> <div class="hide" data-v-f848d4e8><header class="navbar" data-v-f848d4e8><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">iOS丶OC</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">选择模式</h4> <ul class="color-mode-options"><li class="dark">深色模式</li><li class="light active">浅色模式</li><li class="read">阅读模式</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <ul class="suggestions align-right" style="display:none;"></ul></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i></i>iOS开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link"><i class="iconfont reco-category"></i>文章分类
+</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link"><i class="iconfont reco-tag"></i>文章标签
+</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link"><i class="iconfont reco-date"></i>归档
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-f848d4e8></div> <aside class="sidebar" data-v-f848d4e8><div class="personal-info-wrapper" data-v-ebb1c4ea data-v-f848d4e8><!----> <div class="author" data-v-ebb1c4ea>
+    iOS丶OC
+  </div> <div class="personal-info-details" data-v-ebb1c4ea><div data-v-ebb1c4ea>文章：<span data-v-ebb1c4ea>56</span></div> <div data-v-ebb1c4ea>地点：<span data-v-ebb1c4ea>深圳</span></div></div> <!----> <ul class="social-links" data-v-ebb1c4ea><li class="social-item" data-v-ebb1c4ea><i class="iconfont reco-github" style="color:#3eaf7c;" data-v-ebb1c4ea></i></li><li class="social-item" data-v-ebb1c4ea><i class="iconfont reco-juejin" style="color:#00a1d6;" data-v-ebb1c4ea></i></li></ul></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i></i>iOS开发
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link"><i class="iconfont reco-category"></i>文章分类
+</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link"><i class="iconfont reco-tag"></i>文章标签
+</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link"><i class="iconfont reco-date"></i>归档
+</a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/pages/b7b16d5295721/" class="sidebar-link">AsyncDisplayKit 2.0 教程:入门「译」</a></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper bg-style-5"><div class="articleInfo-wrap" data-v-13f19dad><div class="articleInfo" data-v-13f19dad><ul class="breadcrumbs" data-v-13f19dad><li data-v-13f19dad><a href="/" title="首页" class="fa fa-laptop-house router-link-active" data-v-13f19dad></a></li> <li data-v-13f19dad><a href="/categories/?category=iOS%E6%96%87%E7%AB%A0" title="分类" data-v-13f19dad>iOS文章</a></li> <!----> <!----></ul> <div class="info" data-v-13f19dad><div title="作者" class="author fa fa-user" data-v-13f19dad><a href="javascript:;" data-v-13f19dad>BY</a></div> <div title="创建时间" class="date fa fa-calendar-alt" data-v-13f19dad><a href="javascript:;" data-v-13f19dad>2017/02/04 00:00:00</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">
+            Objective-C Runtime 基本使用
+          </h1> <div class="theme-vdoing-content content__default"><h1 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h1> <blockquote><p>在上一篇文章<a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener noreferrer">《Objective-C Runtime详解》<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>中我们探讨了Runtime的基本原理，这篇文章我们将总结一下Runtime的一些基本使用</p></blockquote> <h1 id="使用方法"><a href="#使用方法" class="header-anchor">#</a> 使用方法</h1> <ul><li>查询方法</li> <li>给分类添加属性</li> <li>更换代码的实现方法</li> <li>动态添加方法</li> <li>字典转属性</li></ul> <h1 id="准备"><a href="#准备" class="header-anchor">#</a> 准备</h1> <p>先创建两个类</p> <p><code>ClassA.h</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface ClassA : NSObject {
+    // 公有变量
+    NSString *_publicVar1;
+    NSString *_publicVar2;
+
+}
+// 公有属性
+@property(nonatomic,copy) NSString *publicProperty1;
+@property(nonatomic,copy) NSString *publicProperty2;
+
+/* 公有方法 */
+-(void)methodAOfClassAWithArg:(NSString *)arg;
+
+@end
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p><code>ClassA.m</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;ClassA.h&quot;
+
+@interface ClassA()
+// 私有属性
+@property(nonatomic,copy) NSString *privateProperty1;
+@property(nonatomic,copy) NSString *privateProperty2;
+
+@end
+
+@implementation ClassA {
+    // 私有变量
+    NSString *_privateVar1;
+    NSString *_privateVar2;
+}
+
+/* 公有方法 */
+-(void)methodAOfClassAWithArg:(NSString *)arg {
+    NSLog(@&quot; methodAOfClassA arg = %@&quot;, arg);
+}
+
+/* 私有方法 */
+-(void)MethodBOfClassAWithArg:(NSString *)arg {
+    NSLog(@&quot; methodBOfClassA arg = %@&quot;, arg);
+}
+@end
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p><code>ClassB.h</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface ClassB : NSObject
+
+/* 公有方法 */
+-(void)methodAOfClassBWithArg:(NSString *)arg;
+
+@end
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p><code>ClassB.m</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;ClassB.h&quot;
+
+@implementation ClassB
+- (void)methodAOfClassBWithArg:(NSString *)arg {
+    NSLog(@&quot; methodAOfClassB arg = %@&quot;, arg);
+}
+
+-(void)methodBOfClassBWithArg:(NSString *)arg {
+    NSLog(@&quot; methodBOfClassB arg = %@&quot;, arg);
+}
+
+@end
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="查询方法"><a href="#查询方法" class="header-anchor">#</a> 查询方法</h2> <hr> <p>在Objective-C Runtime下没有真正意义上的私有变量和方法，因为这些私有变量和方法都可以通过Runtime方法获取，这当然包括系统的私有API。接下来我们来一一介绍获取类中属性和方法的方法。当然不要忘了<code>#import &lt;objc/runtime.h&gt;</code>.</p> <h4 id="获取类的名称"><a href="#获取类的名称" class="header-anchor">#</a> 获取类的名称</h4> <p>方法：<code>const char *object_getClassName(id obj)</code>，使用比较简单，传入对象即可得到对应分类名。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>ClassA *classA = [[ClassA alloc] init];
+const char *className = object_getClassName(classA);
+NSLog(@&quot;className = %@&quot;, [NSString stringWithUTF8String:className]);
+
+//输出
+className = ClassA
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h4 id="获取类中的方法"><a href="#获取类中的方法" class="header-anchor">#</a> 获取类中的方法</h4> <p>方法：<code>Method *class_copyMethodList(Class cls, unsigned int *outCount)</code></p> <p>上代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>UInt32 count;
+char dst;
+Method *methods = class_copyMethodList([classA class], &amp;count);//获取方法列表
+for (int i = 0; i &lt; count; i++) {
+    Method method = methods[i];// 获取方法
+    SEL methodName = method_getName(method);// 获取方法名
+    method_getReturnType(method, &amp;dst, sizeof(char));// 获取方法返回类型
+    const char *methodType = method_getTypeEncoding(method);// 获取方法参数类型和返回类型
+    NSLog(@&quot;methodName = %@&quot;,NSStringFromSelector(methodName));
+    NSLog(@&quot;dst = %c&quot;, dst);
+}
+    
+ // 输出
+ methodName = methodAOfClassAWithArg:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = MethodBOfClassAWithArg:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = publicProperty1
+ dst = @
+ methodType = @16@0:8
+ methodName = setPublicProperty1:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = publicProperty2
+ dst = @
+ methodType = @16@0:8
+ methodName = setPublicProperty2:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = privateProperty1
+ dst = @
+ methodType = @16@0:8
+ methodName = setPrivateProperty1:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = privateProperty2
+ dst = @
+ methodType = @16@0:8
+ methodName = setPrivateProperty2:
+ dst = v
+ methodType = v24@0:8@16
+ methodName = .cxx_destruct
+ dst = v
+ methodType = v16@0:8
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><p><code>class_copyMethodList([classA class], &amp;count)</code> 传入元类和计数器地址，返回方法列表。这里注意，返回的是<code>Method</code>结构体类型的C数组，<code>Method</code>类型我们在<a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener noreferrer">上篇文章<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>中已经详细说明，</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>typedef struct objc_method *Method;
+
+struct objc_method {
+    SEL method_name                                          OBJC2_UNAVAILABLE;
+    char *method_types                                       OBJC2_UNAVAILABLE;
+    IMP method_imp                                           OBJC2_UNAVAILABLE;
+} 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>但要区分<code>Method *methods</code>与<code>Method method</code>的区别，这是比较基础C语言知识。还有<code>Uint32</code>是OC定义的<code>unsigned int</code>类型<code>typedef unsigned int UInt32;</code></p> <p>这里我们来看看 <code>method_getReturnType(method, &amp;dst, sizeof(char))</code> 方法简单输出返回值类型，输出为 <code>v</code> 和 <code>@</code> ,参考Apple文档可知道返回类型为 <code>void</code> 和 <code>id</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>A void v
+A method selector (SEL)  ：
+An object (whether statically typed or typed id) @ 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><code>method_getTypeEncoding(method)</code>方法可以输出返回值，参数类型以及接收器类型。我们看输出的<code>v24@0:8@16</code>，分析上面的说明就可以知道： <code>v24</code>返回类型为<code>viod</code>,<code>@0</code>接收器类型为<code>id</code>,<code>@16</code>参数类型为<code>id</code></p> <p>至于类型后面的值观察可以发现都是相差8，我认为是在method中的位置，分别以8bit存储不同类型的数据。</p> <p>若有两个参数返回值为 <code>v32@0:8@16@24</code> ,对比可以猜测，在method中各个成员的排列是这样的： <code>接收器|SEl标识|参数1|参数2|...|返回值</code>，然后由 <code>method_getTypeEncoding(method)</code> 输出的顺序为: <code>返回值类型|接收器类型|SEL标识|参数1|参数2|...</code> 此处为个人见解，如有错误或不同意见欢迎提出探讨。</p> <p>最后发现了一个奇怪的方法 <code>.cxx_destruct</code> ,在中<a href="http://my.safaribooksonline.com/book/programming/objective-c/9780132908641/3dot-memory-management/ch03" target="_blank" rel="noopener noreferrer">这篇文章<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>中：</p> <blockquote><p>ARC actually creates a -.cxx_destruct method to handle freeing instance variables. This method was originally created for calling C++ destructors automatically when an object was destroyed.</p></blockquote> <p>和《Effective Objective-C 2.0》中提到的：</p> <blockquote><p>When the compiler saw that an object contained C++ objects, it would generate a method called .cxx_destruct. ARC piggybacks on this method and emits the required cleanup code within it.</p></blockquote> <p>可以了解到，<code>.cxx_destruct</code> 方法原本是为了C++对象析构的，ARC借用了这个方法插入代码实现了自动内存释放的工作</p> <p>关于 <code>.cxx_destruct</code> 可以参考这篇文章:<a href="http://blog.jobbole.com/65028/" target="_blank" rel="noopener noreferrer">ARC下dealloc过程及.cxx_destruct的探究<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h4 id="获取类中的属性"><a href="#获取类中的属性" class="header-anchor">#</a> 获取类中的属性</h4> <p>在 <a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener noreferrer">上篇文章<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 的 <code>Property</code> 中我们也提到了获取类中的属性的方法，如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>id LenderClass = objc_getClass(&quot;ClassA&quot;);//获取classA 的元类同[ClassA class]
+unsigned int outCount;//属性数量
+// 获取属性列表
+objc_property_t *properties = class_copyPropertyList(LenderClass, &amp;outCount);
+
+// 遍历
+for (int i = 0; i &lt; outCount; i++) {
+
+    objc_property_t property = properties[i];
+    
+    const char *propertyName = property_getName(property);// 获取属性名
+    const char *propertyAttributes = property_getAttributes(property);// 获取属性描述
+    
+    printf(&quot;propertyName：%s \n&quot;, propertyName);
+    printf(&quot;propertyAttributes:%s\n--------\n&quot;, propertyAttributes);//属性名及描述
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>// 输出
+propertyName：privateProperty1 
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_privateProperty1
+--------
+propertyName：privateProperty2 
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_privateProperty2
+--------
+propertyName：publicProperty1 
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_publicProperty1
+--------
+propertyName：publicProperty2 
+propertyAttributes:T@&quot;NSString&quot;,C,N,V_publicProperty2
+--------
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>发现会输出公有属性以及私有属性。</p> <h4 id="获取类中的成员变量"><a href="#获取类中的成员变量" class="header-anchor">#</a> 获取类中的成员变量</h4> <p>我们可以发现获取类中的方法，属性过程基本一致：通过元类获取方法列表或属性列表，然后在进行遍历。获取成员变量也一样：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>id selfClass = [Calss class];
+unsigned int numIvars = 0;
+Ivar *ivars = class_copyIvarList(selfClass, &amp;numIvars);
+for(int i = 0; i &lt; numIvars; i++) {
+    Ivar ivar = ivars[i];
+    const char *ivarName = ivar_getName(ivar);
+    const char *ivarType = ivar_getTypeEncoding(ivar);// 获取类型
+    
+    printf(&quot;ivarName:%s\n&quot;, ivarName);
+    printf(&quot;ivarType:%s\n------\n&quot;, ivarType);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>// 输出
+ivarName:_publicVar1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_publicVar2
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateVar1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateVar2
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_publicProperty1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_publicProperty2
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateProperty1
+ivarType:@&quot;NSString&quot;
+------
+ivarName:_privateProperty2
+ivarType:@
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>可以发现输出了所有的成员变量，包括属性声明的 <code>_+属性名</code> 变量。</p> <h2 id="给分类添加属性"><a href="#给分类添加属性" class="header-anchor">#</a> 给分类添加属性</h2> <hr> <p>众所周知，分类中是不能声明属性的。</p> <p>我们创建一个 <code>CalssA</code> 的分类 <code>ClassA+CategoryA</code> ,在 <code>ClassA+CategoryA</code> 中添加一个属性 <code>name</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;ClassA.h&quot;
+
+@interface ClassA (CategoryA)
+
+@property (nonatomic, strong) NSString *name;
+
+@end
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>若在我们调用<code>CalssA</code>分类的<code>name</code> 将会crash，原因是分类中使用 <code>@property</code> 声明属性并不会生成<code>setter</code>和<code>getter</code>方法,但是我们会想，我们可以自己实现呀，没错，看下面的代码</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;ClassA+CategoryA.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+@implementation ClassA (CategoryA)
+
+- (NSString *)name {
+    return name;
+}
+
+- (void)setName:(NSString *)name {
+    _name = name;
+}
+
+@end
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>这里会报编译错误，因为分类中使用 <code>@property</code> 声明属性也不会生成成员变量 _name，并且手动声明也不行</p> <p><img src="http://ww1.sinaimg.cn/large/7853084cgw1f9zsknx42yj20fw033gm0.jpg" alt=""></p> <p>编译错误，提示实例变量无法添加到分类中，用正常的方法确实无法在分类中添加属性。</p> <p>但是可以通过Runtim机制进行“添加”。其本质是给这个类添加属性关联，而非把这个属性添加到类中。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;ClassA+CategoryA.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+
+@implementation ClassA (CategoryA)
+
+- (NSString *)name {
+    return objc_getAssociatedObject(self, @selector(name));
+}
+
+- (void)setName:(NSString *)name {
+    objc_setAssociatedObject(self, @selector(name), name, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+@end
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>调用：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>classA.name = @&quot;邱帅&quot;;
+NSLog(@&quot;%@&quot;,classA.name);
+
+// 输出
+2016-11-21 16:18:48.084 UseRuntime[4392:1325037] 邱帅
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>可以看出添加属性成功！</p> <p>我们来看看关联属性的这几个方法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>OBJC_EXPORT void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy)
+    OBJC_AVAILABLE(10.6, 3.1, 9.0, 1.0);
+    
+OBJC_EXPORT id objc_getAssociatedObject(id object, const void *key)
+    OBJC_AVAILABLE(10.6, 3.1, 9.0, 1.0);
+    
+OBJC_EXPORT void objc_removeAssociatedObjects(id object)
+    OBJC_AVAILABLE(10.6, 3.1, 9.0, 1.0);
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p><code>objc_setAssociatedObject()</code> 方法为关联属性，参数如下：</p> <ul><li><code>object</code>：属性关联的源对象，这里使用了<code>self</code>，代表关联本类的对象</li> <li><code>key</code>:区分属性的唯一标识，因为关联的属性可能不止一个，我们使用了<code>- (NSString *)name</code>方法的<code>SEL</code> <code>@selector(name)</code>作为唯一标示，当然也可以用下面的方法来生成Key :</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>//利用静态变量地址唯一不变的特性
+1、static void *strKey = &amp;strKey;
+
+2、static NSString *strKey = @&quot;strKey&quot;; 
+
+3、static char strKey;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li><code>value</code>：关联的属性值</li> <li><code>policy</code>：设置关联对象的<code>copy</code>、<code>story</code>、<code>nonatomic</code>等参数:</li></ul> <p>这些常量对应着引用关联值的政策，也就是 Objc 内存管理的引用计数机制。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>typedef OBJC_ENUM(uintptr_t, objc_AssociationPolicy) {
+    OBJC_ASSOCIATION_ASSIGN = 0,           
+    OBJC_ASSOCIATION_RETAIN_NONATOMIC = 1,              
+    OBJC_ASSOCIATION_COPY_NONATOMIC = 3,                                                  
+    OBJC_ASSOCIATION_RETAIN = 01401,       
+    OBJC_ASSOCIATION_COPY = 01403                                               
+};
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><code>objc_getAssociatedObject()</code> 方法通过 <code>object</code> 与 <code>Key</code> 直接获取关联的属性值</p> <p><code>objc_removeAssociatedObjects()</code> 移除关联</p> <p>我们使用上面的获取类中属性和成员变量的方法，发现输出：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 有属性输出
+propertyName：name 
+propertyAttributes:T@&quot;NSString&quot;,&amp;,N
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>没有成员变量 <code>_name</code>，进一步说明分类中不能添加成员变量！其本质是添加属性与分类之间关联。</p> <h2 id="更换代码实现方法-method-swizzling"><a href="#更换代码实现方法-method-swizzling" class="header-anchor">#</a> 更换代码实现方法（Method Swizzling）</h2> <hr> <p>在<a href="http://www.jianshu.com/p/a36bfc976b8e" target="_blank" rel="noopener noreferrer">上篇<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>中详细介绍了<code>Method Swizzling</code>的原理，其本质是更换了 <code>selector</code> 的 <code>IMP</code> 。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;ViewController.h&quot;
+#import &lt;objc/runtime.h&gt;
+#import &quot;ClassA.h&quot;
+#import &quot;ClassB.h&quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
++ (void)load {
+    Method classA_method = class_getInstanceMethod([ClassA class], @selector(methodAOfClassAWithArg:));
+    Method classB_method = class_getInstanceMethod([ClassB class], @selector(methodAOfClassBWithArg:));
+    method_exchangeImplementations(classA_method, classB_method);
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [classA methodAOfClassAWithArg:@&quot;classA 发出的 A方法&quot;];
+    [classB methodAOfClassBWithArg:@&quot;classB 发出的 A方法&quot;];
+}    
+
+// 输出
+
+2016-11-22 13:07:15.151 UseRuntime[1015:533335]  methodAOfClassB arg = classA 发出的 A方法
+2016-11-22 13:07:15.151 UseRuntime[1015:533335]  methodAOfClassA arg = classB 发出的 A方法
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br></div></div><p>首先交换方法写在 <code>+(void)load</code>,在程序的一开始就调用执行，你将不会碰到并发问题。</p> <p>我们可以发现两个方法的实现过程以及对换。</p> <p>当然，平时使用我们并不会这么做，当我们要在系统提供的方法上再扩充功能时(不能重写系统方法)，就可以使用<code>Method Swizzling</code>.</p> <p>我们给<code>NSArray</code>添加一个分类<code>AddLog</code>,给 <code>arrayByAddingObject:</code>方法添加一个输出方法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;NSArray+AddLog.h&quot;
+#import &lt;objc/runtime.h&gt;
+
+@implementation NSArray (AddLog)
+
++ (void)load {
+
+    SEL ori_selector = @selector(arrayByAddingObject:);
+    SEL my_selector = @selector(my_arrayByAddingObject:);
+    
+    Method ori_method = class_getInstanceMethod([NSArray class], ori_selector);
+    Method my_method  = class_getInstanceMethod([NSArray class], my_selector);
+    
+    if (([NSArray class], ori_selector, method_getImplementation(my_method), method_getTypeEncoding(my_method))) {
+        
+        class_replaceMethod([NSArray class], my_selector, method_getImplementation(ori_method), method_getTypeEncoding(ori_method));
+        
+    } else {
+        method_exchangeImplementations(ori_method, my_method);
+    }
+
+}
+
+- (NSArray *)my_arrayByAddingObject:(id)anObject {
+
+    NSArray *array = [self my_arrayByAddingObject:anObject];
+    NSLog(@&quot;添加了一个元素 %@&quot;, anObject);
+    return array;
+}
+
+@end
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>我们来看看这三个方法：</p> <ul><li><code>class_addMethod()</code>：给一个方法添加新的方法和实现</li> <li><code>class_replaceMethod(）</code>：取代了对于一个给定的类的实现方法</li> <li><code>method_exchangeImplementations(）</code>：交换两个类的实现方法</li></ul> <p>这里我们先使用 <code>class_addMethod()</code> 在类中添加方法，若返回Yes说明类中没有该方法，然后再使用 <code>class_replaceMethod()</code> 方法进行取代;若返回NO，说明类中有该方法，使用<code>method_exchangeImplementations()</code>直接交换两者的 <code>IMP</code>.</p> <p>其实在这里直接使用<code>method_exchangeImplementations()</code>进行交换就可以了。因为类中必定有<code>arrayByAddingObject：</code>方法。</p> <p>我给我们自己的方法命名为<code>my_arrayByAddingObject:</code>,在原来的方法名上加上前缀，既可以防止命名冲突，又方便阅读，在我们<code>my_arrayByAddingObject:</code>方法中调用本身</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>NSArray *array = [self my_arrayByAddingObject:anObject];
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>看似会陷入递归调用，其实则不会，因为我们已经在<code>+ (void)load</code>方法中更换了<code>IMP</code>,他会调用<code>arrayByAddingObject:</code>方法，然后在后面添加我们需要添加的功能。</p> <p><code>arrayByAddingObject:</code>方法的调用不变；</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>NSArray *arr1 = @[@&quot;one&quot;, @&quot;two&quot;];
+NSArray *arr2 = [arr1 arrayByAddingObject:@&quot;three&quot;];
+NSLog(@&quot;arr2 = %@&quot;, arr2);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><div class="language- line-numbers-mode"><pre class="language-text"><code>// 输出
+2016-11-22 13:57:00.021 UseRuntime[1147:743449] 添加了一个元素 three
+2016-11-22 13:57:00.021 UseRuntime[1147:743449] arr2 = (
+    one,
+    two,
+    three
+)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="动态添加方法"><a href="#动态添加方法" class="header-anchor">#</a> 动态添加方法</h2> <p>动态添加方法就是在消息转发前在<code>+ (BOOL)resolveInstanceMethod:(SEL)sel</code>方法中使用<code>class_addMethod()</code> 添加方法。</p> <p>下面我面添加一个名为<code>resolveThisMethodDynamically</code>的方法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>void dynamicMethodIMP(id self, SEL _cmd) {
+    // implementation ....
+    printf(&quot;执行了dynamicMethodIMP!!!!&quot;);
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+    
+    if (sel == @selector(resolveThisMethodDynamically)) {
+        class_addMethod([self class], sel, (IMP) dynamicMethodIMP, &quot;v@:&quot;);
+        return YES;
+    }
+    return [super resolveInstanceMethod:sel];
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>调用：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>performSelector:@selector(resolveThisMethodDynamically)];
+
+// 输出
+执行了dynamicMethodIMP!!!!
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>对于上面添加的的方法 <code>resolveThisMethodDynamically</code> ，使用 <code>[self performSelector:@selector(resolveThisMethodDynamically)]</code> 进行调用，不能使用<code>[self resolveThisMethodDynamically]</code>,因为压根就没有声明 <code>-(void)resolveThisMethodDynamically</code>,会报编译错误。</p> <p>整个过程就是，<code>performSelector:</code>调用<code>resolveThisMethodDynamically</code>方法，然后在列表中找不到（因为类中根本就没有注册该方法），然后跳入 <code>+ (BOOL)resolveInstanceMethod:</code> 中，我们再为<code>resolveThisMethodDynamically</code>方法添加具体实现。</p> <h2 id="字典转属性"><a href="#字典转属性" class="header-anchor">#</a> 字典转属性</h2> <p>将字典转化为模型，是在我们iOS开发中最为常用的技能。iOS的模型框架如<code>JSONModel</code>,<code>MJExtension</code>,<code>MJExtension</code>等皆是利用了runtime，将字典转为模型，不过兼顾的细节更多。下面我们来实现一个简易的字典转模型框架。</p> <p>先上代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &quot;NSObject+BYModel.h&quot;
+#import &lt;objc/runtime.h&gt;
+#import &lt;objc/message.h&gt;
+
+@implementation NSObject (BYModel)
+
+- (void)by_modelSetDictionary:(NSDictionary *)dic {
+
+    Class cls = [self class];
+    
+    // 遍历本类和父类的变量
+    while (cls) {
+        //获取所有成员变量
+        unsigned int outCount = 0;
+        Ivar *ivars = class_copyIvarList(cls, &amp;outCount);
+        
+        for (int i = 0; i &lt; outCount; i++) {
+            Ivar ivar = ivars[i];
+            
+            // 获取变量名
+            NSMutableString *ivar_Name = [NSMutableString stringWithUTF8String:ivar_getName(ivar)];
+        
+            [ivar_Name replaceCharactersInRange:NSMakeRange(0, 1) withString:@&quot;&quot;];// _ivar -&gt; ivar
+            
+            //
+            NSString *key = [ivar_Name copy];
+            if ([key isEqualToString:@&quot;dece&quot;]) {
+                key = @&quot;description&quot;;
+            }
+            if ([key isEqualToString:@&quot;ID&quot;]) {
+                key = @&quot;id&quot;;
+            }
+            
+            id value = dic[key];
+            if (!value) continue;
+            
+            // 拼接SEL    ivar -&gt; setIvar:
+            
+            NSString *cap = [ivar_Name substringToIndex:1];
+            cap = cap.uppercaseString; // a-&gt;A
+            [ivar_Name replaceCharactersInRange:NSMakeRange(0, 1) withString:cap];
+            [ivar_Name insertString:@&quot;set&quot; atIndex:0];
+            [ivar_Name appendString:@&quot;:&quot;];
+            
+            SEL selector = NSSelectorFromString(ivar_Name);
+            
+            // 判断类型并发送消息
+            NSString *type = [NSString stringWithUTF8String:ivar_getTypeEncoding(ivar)];
+            
+            if ([type hasPrefix:@&quot;@&quot;]) { // 对象类型
+                objc_msgSend(self, selector, value);
+            } else { // 非对象类型
+                if ([type isEqualToString:@&quot;d&quot;]) {
+                    objc_msgSend(self, selector, [value doubleValue]);
+                } else if ([type isEqualToString:@&quot;f&quot;]) {
+                    objc_msgSend(self, selector, [value floatValue]);
+                } else if ([type isEqualToString:@&quot;i&quot;]) {
+                    objc_msgSend(self, selector, [value intValue]);
+                } else {
+                    objc_msgSend(self, selector, [value longLongValue]);
+                }
+            }
+            
+            
+        }
+        // 获取父类进行遍历变量
+        cls = class_getSuperclass(cls);
+    }
+    
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br></div></div><p>这个这个段代码可能出现编译错误：</p> <p><img src="http://ww3.sinaimg.cn/large/7853084cgw1fa3b5fbvsqj20k001fjrn.jpg" alt=""></p> <p>解决办法很简单：</p> <p>将项目 Project -&gt; Build Settings -&gt; Enable strct checking of objc_msgSend Calls 设置为 <strong>NO</strong> 即可</p> <p><img src="http://ww1.sinaimg.cn/large/7853084cgw1fa3b6mm9h7j20oh0aj0v8.jpg" alt=""></p> <p>接下来我们创建一个模型类<code>Student</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>#import &lt;Foundation/Foundation.h&gt;
+
+@interface Student : NSObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) int age;
+@property (nonatomic, assign) int idNumber;
+
+@end
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>使用我们的转模型方法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>NSDictionary *dic = @{ @&quot;name&quot;:@&quot;邱帅&quot;, @&quot;age&quot;: @(23), @&quot;idNumber&quot;:@(1234567)};
+
+Student *stu = [Student new];
+[stu by_modelSetDictionary:dic];
+
+NSLog(@&quot;%@&quot;, [NSString stringWithFormat:@&quot;%@, %d, %d&quot;, stu.name, stu.age, stu.idNumber]);
+
+// 输出
+2016-11-24 15:32:46.351 Demo_字典转模型（Runtime）[2131:884627] 邱帅, 23, 1234567
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>该方法先利用我们上面介绍的<code>class_copyIvarList()</code>获取类中的成员变量列表，然后进行遍历，拼接字符串<code>setIvar:</code>，最后调用<code>objc_msgSend()</code>直接发送设置变量的消息，完成属性的赋值。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>while (cls) {
+
+	//code..
+	
+ cls = class_getSuperclass(cls);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>这个循环是则获取父类中的属性：当前类的属性遍历结束之后，指向父类，若父类存在则在继续遍历属性，否则就退出循环。</p> <p>当然，这个方法只是介绍了利用runtime进行字典转模型的原理,实际中还有很多需要考虑的细节，项目中我还是推荐使用像<a href="https://github.com/ibireme/YYModel" target="_blank" rel="noopener noreferrer">YYModel<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>这些比较成熟而且安全的模型框架。</p> <p>关于快速字典转模型可以参考我写的一篇<a href="http://www.jianshu.com/p/b7d8cf650722" target="_blank" rel="noopener noreferrer">《快速完成JSON\字典转模型 For YYModel》<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p></div></div> <div class="page-edit"><div class="tags"><a href="/tags/?tag=Obj-C" title="标签">#Obj-C</a><a href="/tags/?tag=Runtime" title="标签">#Runtime</a><a href="/tags/?tag=iOS" title="标签">#iOS</a></div> <!----></div> <div class="page-nav-wapper"><!----> <!----></div></div> <div class="comments-wrapper" style="display:none;"><!----></div></main></div> <div class="footer-wrapper" data-v-1ae6cc0c data-v-1ae6cc0c><!----> <span class="footer-copyright" data-v-1ae6cc0c><i class="iconfont reco-copyright" data-v-1ae6cc0c></i> <a data-v-1ae6cc0c><span data-v-1ae6cc0c>iOS丶OC</span> <span class="ml5" data-v-1ae6cc0c>
+          2015 - 2022
+        </span></a></span> <span class="footer-view-site" data-v-1ae6cc0c><i class="iconfont reco-eye" data-v-1ae6cc0c></i> <span id="busuanzi_container_site_uv" data-v-1ae6cc0c>
+        访客数：<span id="busuanzi_value_site_uv" class="num" data-v-1ae6cc0c>-</span></span> <span id="busuanzi_container_site_pv" class="ml5" data-v-1ae6cc0c>
+        访问量：<span id="busuanzi_value_site_pv" class="num" data-v-1ae6cc0c>-</span></span></span> <!----></div> <!----> <div class="music-player__main" data-v-f848d4e8><div class="music-player__blur" data-v-f848d4e8></div> <div class="music-player__disc" style="width:80px;height:80px;top:10px;left:10px;" data-v-f848d4e8><div class="music-player__image" style="width:50px;height:50px;" data-v-f848d4e8><img width="100%" src="http://coderutil.oss-cn-beijing.aliyuncs.com/bbs-image/file_197a993e974e4ddf94910da901fd6227.png" alt="" data-v-f848d4e8></div> <div class="music-player__pointer" data-v-f848d4e8><img width="70%" src="data:image/png;base64,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" alt="" data-v-f848d4e8></div></div> <div class="music-player__controls" style="width:170px;overflow-x:hidden;" data-v-f848d4e8><audio src="/assets/media/music.55a1a0d4.mp3" data-v-f848d4e8></audio> <div class="music__info" style="height:40px;margin-top:8px;" data-v-f848d4e8><h5 class="music__info--title" style="font-size:18px;text-indent:5px;text-align:left;" data-v-f848d4e8>
+          小阿枫-我要找到你
+        </h5></div> <div class="playbtn" data-v-f848d4e8>播放</div></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><!----><div></div></div></div>
+    <script src="/assets/js/app.66cb26ac.js" defer></script><script src="/assets/js/2.3ee17fbc.js" defer></script><script src="/assets/js/12.c6385964.js" defer></script><script src="/assets/js/4.2b6c6ac4.js" defer></script>
+  </body>
+</html>
